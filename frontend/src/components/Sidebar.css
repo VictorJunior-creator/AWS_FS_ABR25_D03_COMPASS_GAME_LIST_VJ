@@ -1,0 +1,214 @@
+:root {
+  --sidebar-width: 260px;
+  --sidebar-width-collapsed: 80px;
+  --sidebar-bg: var(--secondary-bg);
+  --sidebar-hover-bg: rgba(58, 141, 141, 0.534);
+  --sidebar-active-bg: var(--sidebar-active-color);
+  --sidebar-border-radius: 0.5rem;
+  --transition-speed: 0.3s;
+}
+
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transition: width var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease;
+  overflow-x: hidden;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.dashboard-container.sidebar-collapsed .sidebar {
+  width: var(--sidebar-width-collapsed);
+}
+
+
+.sidebar-header {
+  padding: 0 10px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-container.sidebar-collapsed .sidebar-header {
+  justify-content: center;
+}
+
+
+.logo {
+  background-image: url('/images/logo-icon.svg');
+  width: 100%;
+  height: 100%;
+  margin-top: 1rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+
+.collapse-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-speed) ease;
+}
+
+.collapse-btn svg {
+  width: 32px;
+  height: 32px;
+}
+
+.collapse-btn:hover {
+  color: var(--sidebar-active-bg);
+}
+
+
+.sidebar-nav {
+  flex-grow: 1;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--text-muted);
+  border-radius: var(--sidebar-border-radius);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  white-space: nowrap;
+}
+
+.sidebar-nav li a svg {
+  margin-right: 15px;
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.sidebar-nav li a:hover {
+  background-color: var(--sidebar-hover-bg);
+  color: var(--text-color);
+}
+
+.sidebar-nav li.active a {
+  background-color: var(--sidebar-active-bg);
+  color: #000000;
+  font-weight: 600;
+  border-radius: var(--sidebar-border-radius);
+  margin-left: 5px;
+}
+
+
+.dashboard-container.sidebar-collapsed .sidebar-nav li a span {
+  display: none;
+}
+
+.dashboard-container.sidebar-collapsed .sidebar-nav li a {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.dashboard-container.sidebar-collapsed .sidebar-nav li a svg {
+  margin-right: 0;
+}
+
+
+.sidebar-footer {
+  padding: 10px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 1px solid var(--text-muted);
+  color: var(--text-muted);
+  padding: 10px 15px;
+  border-radius: var(--sidebar-border-radius);
+  cursor: pointer;
+  width: 100%;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+  white-space: nowrap;
+}
+
+.logout-btn svg {
+  margin-right: 10px;
+}
+
+.logout-btn:hover {
+  color: #ffffff;
+  border-color: #FD4760;
+  background-color: rgba(253, 71, 96, 0.9);
+}
+
+
+.dashboard-container.sidebar-collapsed .logout-btn span {
+  display: none;
+}
+
+.dashboard-container.sidebar-collapsed .logout-btn {
+  justify-content: center;
+  padding: 10px;
+}
+
+.dashboard-container.sidebar-collapsed .logout-btn svg {
+  margin-right: 0;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: var(--sidebar-width-collapsed);
+  }
+
+  .sidebar-header .logo,
+  .sidebar-nav li a span,
+  .sidebar-footer .logout-btn span {
+    display: none;
+  }
+
+  .sidebar-header {
+    justify-content: center;
+  }
+
+  .sidebar-nav li a {
+    justify-content: center;
+    padding: 12px 0;
+  }
+
+  .sidebar-nav li a svg {
+    margin-right: 0;
+  }
+
+  .logout-btn {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .logout-btn svg {
+    margin-right: 0;
+  }
+}
