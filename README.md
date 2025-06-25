@@ -56,7 +56,7 @@ COMPASS Games List is a full-stack web application designed for gamers who want 
 - **Express.js** - Web application framework
 - **TypeScript** - Strongly typed programming language
 - **Prisma** - Next-generation ORM for Node.js and TypeScript
-- **SQLite** - Lightweight database
+- **PostgreSQL** - Database
 - **JWT** - JSON Web Tokens for authentication
 - **bcryptjs** - Password hashing
 
@@ -76,131 +76,179 @@ COMPASS Games List is a full-stack web application designed for gamers who want 
 ### Backend
 
 ```
-backend/
-├── prisma/
-│   └── ...
-├── src/
-│   ├── controllers/
-│   ├── generated/prisma/
-│   ├── middleware/
-│   ├── routes/
-│   ├── services/
-│   ├── types/
-│   ├── utils/
-│   ├── app.ts
-│   └── server.ts
-├── .env
-├── .env.example
-├── .eslintrc.json
-├── .gitignore
-├── .prettierrc
-├── package.json
-├── package-lock.json
-└── tsconfig.json
+└── 📁backend
+        └── .dockerignore
+        └── .env.example
+        └── .eslintrc.json
+        └── .gitignore
+        └── .prettierrc
+        └── Dockerfile
+        └── package-lock.json
+        └── package.json
+        └── 📁prisma
+            └── schema.prisma
+        └── 📁src
+            └── app.ts
+            └── 📁controllers
+                └── authController.ts
+                └── categoryController.ts
+                └── dashboardController.ts
+                └── gameController.ts
+                └── platformController.ts
+                └── userController.ts
+            └── 📁middleware
+                └── auth.middleware.ts
+                └── error.middleware.ts
+                └── validation.middleware.ts
+            └── 📁routes
+                └── authRoutes.ts
+                └── categoryRoutes.ts
+                └── dashboardRoutes.ts
+                └── gameRoutes.ts
+                └── platformRoutes.ts
+                └── userRoutes.ts
+            └── server.ts
+            └── 📁services
+                └── auth.service.ts
+                └── category.service.ts
+                └── dashboard.service.ts
+                └── game.service.ts
+                └── platform.service.ts
+            └── 📁types
+                └── api.types.ts
+                └── auth.types.ts
+                └── category.types.ts
+                └── dashboard.types.ts
+                └── express.d.ts
+                └── game.types.ts
+                └── platform.types.ts
+                └── user.types.ts
+            └── 📁utils
+                └── auth.utils.ts
+                └── jwt.utils.ts
+                └── pagination.utils.ts
+                └── validation.utils.ts
+        └── tsconfig.json
 ```
 
 ### Frontend
 
 ```
 frontend/
-├── node_modules/
-├── public/
-├── src/
-│   ├── components/
-│   ├── contexts/
-│   ├── hooks/
-│   ├── lib/
-│   ├── pages/
-│   ├── services/
-│   ├── types/
-│   ├── App.css
-│   ├── App.tsx
-│   ├── custom-toast.css
-│   ├── index.css
-│   ├── main.tsx
-│   └── vite-env.d.ts
-├── .gitignore
-├── .prettierrc
-├── eslint.config.js
-├── index.html
-├── package.json
-├── package-lock.json
-├── README.md
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-└── vite.config.ts
+└── 📁frontend
+        └── .dockerignore
+        └── .gitignore
+        └── .prettierrc
+        └── Dockerfile
+        └── eslint.config.js
+        └── index.html
+        └── nginx.conf
+        └── package-lock.json
+        └── package.json
+        └── 📁public
+            └── 📁images
+                └── favicon.png
+                └── icons_1-bg.png
+                └── icons_2-bg.png
+                └── icons_3-bg.png
+                └── login-bg.svg
+                └── logo-icon.svg
+                └── warning.png
+        └── README.md
+        └── 📁src
+            └── App.css
+            └── App.tsx
+            └── 📁components
+                └── AuthBackground.css
+                └── AuthBackground.tsx
+                └── CategoryModal.css
+                └── CategoryModal.tsx
+                └── ConfirmationModal.css
+                └── ConfirmationModal.tsx
+                └── GameModal.css
+                └── GameModal.tsx
+                └── Logo.css
+                └── Logo.tsx
+                └── PlatformModal.css
+                └── PlatformModal.tsx
+                └── ProtectedRoute.css
+                └── ProtectedRoute.tsx
+                └── PublicRoute.tsx
+                └── Sidebar.css
+                └── Sidebar.tsx
+            └── 📁contexts
+                └── AuthContext.tsx
+            └── custom-toast.css
+            └── 📁hooks
+                └── useDashboard.ts
+                └── useInvalidateCache.ts
+            └── index.css
+            └── 📁lib
+                └── queryClient.ts
+            └── main.tsx
+            └── 📁pages
+                └── Categories.css
+                └── Categories.tsx
+                └── DashboardPage.css
+                └── DashboardPage.tsx
+                └── Games-styles.css
+                └── Games.css
+                └── Games.tsx
+                └── LoginPage.css
+                └── LoginPage.tsx
+                └── Platforms.css
+                └── Platforms.tsx
+                └── RegisterPage.css
+                └── RegisterPage.tsx
+            └── 📁services
+                └── api.ts
+                └── categoryService.ts
+                └── dashboardService.ts
+                └── gameService.ts
+            └── 📁types
+                └── platform.ts
+            └── vite-env.d.ts
+        └── tsconfig.app.json
+        └── tsconfig.json
+        └── tsconfig.node.json
+        └── vite.config.ts
 ```
 
 ## 🚀 Setup & Installation
 
 ### Prerequisites
-
-- Node.js (v18 or higher)
-- npm (v8 or higher)
-
+Make sure you have installed:
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+  
 ### Backend Setup
 
-1. Navigate to the backend directory:
+### Environment Configuration
 
-   ```bash
-   cd backend
-   ```
+Copy the backend environment file:
+```bash
+cp backend/.env.example backend/.env
 
-2. Install dependencies:
+Run with Docker
+To build and run both services:
+docker-compose up --build
+Frontend will be available at: http://localhost:80 Backend API at: http://localhost:3333
 
-   ```bash
-   npm install
-   ```
+## 🧪 Available Scripts
+   Backend
+      cd backend
+      npm install
+      npx prisma generate
+      npm run dev
+   Frontend
+      cd frontend
+      npm install
+      npm run dev
 
-3. Create a `.env` file in the backend directory with the following content:
-
-   ```
-   PORT=3000
-   JWT_SECRET=your_jwt_secret_key
-   ```
-
-4. Generate Prisma client:
-
-   ```bash
-   npx prisma generate
-   ```
-
-5. Run database migrations:
-
-   ```bash
-   npx prisma migrate dev
-   ```
-
-6. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-   The backend API will be available at `http://localhost:3000`.
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
-
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-   The frontend application will be available at `http://localhost:5173`.
+##🗂️ Prisma Migration (Optional)
+   To apply migrations manually:
+      cd backend
+      npx prisma migrate dev
 
 ## 📊 Database Schema
 
