@@ -71,6 +71,10 @@ COMPASS Games List is a full-stack web application designed for gamers who want 
 - **React Icons** - Icon library
 - **Axios** - HTTP client
 
+### Others
+- **Docker**
+- **Nginx**
+
 ## 📁 Project Structure
 
 ### Backend
