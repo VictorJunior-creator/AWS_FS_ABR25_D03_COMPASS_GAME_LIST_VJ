@@ -1,4 +1,4 @@
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs';
 import { RegisterRequest } from '../types/auth.types';
 import { generateToken } from '../utils/jwt.utils';

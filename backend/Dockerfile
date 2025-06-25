@@ -1,4 +1,5 @@
-FROM node:18
+# Build stage
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
@@ -8,5 +9,19 @@ RUN npm install
 COPY . .
 
 RUN npx prisma generate
+RUN npm run build
 
-CMD ["npm", "run", "dev"]
+# Production stage
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install --production
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+
+ENV NODE_ENV=production
+
+CMD ["node", "dist/server.js"]

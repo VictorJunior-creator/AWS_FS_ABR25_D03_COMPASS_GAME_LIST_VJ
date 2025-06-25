@@ -1,4 +1,4 @@
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
 import { DashboardStats, DashboardResponse } from '../types/dashboard.types';
 
 export class DashboardService {

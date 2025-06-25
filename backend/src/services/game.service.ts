@@ -1,9 +1,10 @@
-import { PrismaClient, GameStatus } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
 import {
   CreateGameData,
   UpdateGameData,
   GameResponse,
   GameFilters,
+  GameStatus
 } from '../types/game.types';
 import {
   PaginationResult,
@@ -55,7 +56,7 @@ export class GameService {
     let finalFinishDate: Date | null = gameData.finishDate
       ? new Date(gameData.finishDate)
       : null;
-    if (gameData.status === GameStatus.Playing) {
+    if (gameData.status === GameStatus.PLAYING) {
       finalFinishDate = null;
     } else {
       if (!finalFinishDate) {
@@ -127,7 +128,7 @@ export class GameService {
         )
         .map((game) => game.id);
 
-      if (searchMatchingIds.length === 0) {
+      if (searchMatchingIds?.length === 0) {
         return createPaginationResult([], 0, currentPage, currentLimit);
       }
     }
@@ -272,11 +273,11 @@ export class GameService {
       ? new Date(updateData.acquisitionDate)
       : game.acquisitionDate;
 
-    if (currentStatus === GameStatus.Playing) {
+    if (currentStatus === GameStatus.PLAYING) {
       finalFinishDate = null;
     } else if (
-      currentStatus === GameStatus.Done ||
-      currentStatus === GameStatus.Abandoned
+      currentStatus === GameStatus.DONE ||
+      currentStatus === GameStatus.ABANDONED
     ) {
       if (updateData.finishDate === undefined && game.finishDate === null) {
         throw new Error(

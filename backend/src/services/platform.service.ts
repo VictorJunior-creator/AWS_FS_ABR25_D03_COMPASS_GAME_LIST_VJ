@@ -1,9 +1,10 @@
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
 import {
   CreatePlatformData,
   UpdatePlatformData,
   PlatformResponse,
   PlatformWithGameCount,
+  Platform,
 } from '../types/platform.types';
 import {
   PaginationResult,
@@ -29,7 +30,7 @@ export class PlatformService {
     });
 
     const titleExists = userPlatforms.some(
-      (platform) =>
+      (platform:Platform) =>
         platform.title.toLowerCase() === platformData.title.toLowerCase(),
     );
 
@@ -181,7 +182,7 @@ export class PlatformService {
       });
 
       const titleExists = otherPlatforms.some(
-        (platform) =>
+        (platform:Platform) =>
           platform.title.toLowerCase() === updateData.title!.toLowerCase(),
       );
 
