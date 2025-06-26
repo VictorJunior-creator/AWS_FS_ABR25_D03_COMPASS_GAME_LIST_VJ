@@ -20,12 +20,12 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
-app.use('/categories', categoryRoutes);
-app.use('/platforms', platformRoutes);
-app.use('/games', gameRoutes);
-app.use('/dashboard', dashboardRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/platforms', platformRoutes);
+app.use('/api/games', gameRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.use(notFoundHandler);
 
