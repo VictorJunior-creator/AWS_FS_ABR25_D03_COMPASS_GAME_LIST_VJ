@@ -1,3 +1,6 @@
+TO ACCESS THIS PROJECT: http://ec2-3-140-186-31.us-east-2.compute.amazonaws.com/login
+
+
 # 🎮 COMPASS Games List
 
 A comprehensive game tracking application that allows users to manage their video game collection, categorize games, track progress, and organize gaming platforms.
@@ -105,11 +108,6 @@ Frontend will be available at: http://localhost:80 Backend API at: http://localh
       cd frontend
       npm install
       npm run dev
-
-##🗂️ Prisma Migration (Optional)
-   To apply migrations manually:
-      cd backend
-      npx prisma migrate dev
 
 ## 📊 Database Schema
 
